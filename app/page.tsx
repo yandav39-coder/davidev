@@ -8,9 +8,10 @@ import { profile } from "./data/profile";
 import { useLiveGames } from "./hooks/useLiveGames";
 import { useState, useEffect, useRef, useMemo } from "react";
 import MouseGlow from "./components/MouseGlow";
-import RobloxBg from "./components/RobloxBg";
+import CodeBg from "./components/CodeBg";
 import Typewriter from "./components/Typewriter";
 import TopGames from "./components/TopGames";
+import Mascot from "./components/Mascot";
 import { useScrollReveal } from "./hooks/useScrollReveal";
 import { useCountUp } from "./hooks/useCountUp";
 
@@ -89,9 +90,8 @@ export default function Page() {
             <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
             <a href="#home" className="relative flex items-center gap-2 opacity-90 transition-opacity hover:opacity-100" aria-label={profile.name}>
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#4d8dff] text-[13px] font-black italic tracking-tighter text-white shadow-[0_0_20px_rgba(77,141,255,0.45)]">
-                {profile.logo}
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo-cubo.svg" alt="" className="h-8 w-auto drop-shadow-[0_0_12px_rgba(77,141,255,0.55)]" />
               <span className="text-sm font-semibold tracking-tight text-white">
                 {profile.name}<span className="text-[#8fb8ff]">Dev</span>
               </span>
@@ -189,7 +189,7 @@ export default function Page() {
           style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")", backgroundRepeat: "repeat", backgroundSize: "200px 200px" }}
         />
 
-        <section id="home" className="relative flex min-h-[80vh] items-center justify-center px-6 pt-28">
+        <section id="home" className="relative flex min-h-[80vh] items-center justify-center gap-10 px-6 pt-28 lg:gap-16">
           <div className="relative flex max-w-lg flex-col gap-8 reveal">
             <div className="flex items-center gap-2">
               <span className="h-px w-8 bg-[#4d8dff]/70" />
@@ -246,6 +246,7 @@ export default function Page() {
               </div>
             </div>
           </div>
+          <Mascot />
         </section>
 
         <section id="about" className="relative px-6 pt-16 pb-32">
@@ -470,7 +471,7 @@ export default function Page() {
       >
         D
       </div>
-      <RobloxBg />
+      <CodeBg />
     </>
   );
 }

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500"><defs>
+<linearGradient id="head" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#78aaff"/><stop offset="1" stop-color="#3466d6"/></linearGradient>
+<linearGradient id="hood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a3270"/><stop offset="1" stop-color="#0f1f4a"/></linearGradient>
+<linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16295d"/><stop offset="1" stop-color="#0b1636"/></linearGradient>
+<linearGradient id="visor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e1c3c"/><stop offset="1" stop-color="#050c1d"/></linearGradient>
+<filter id="eyeGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="26"/></filter>
+<filter id="neon" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<clipPath id="card"><rect width="500" height="500" rx="56"/></clipPath><clipPath id="nocard"><rect width="500" height="500"/></clipPath>
+</defs>
+
+<g clip-path="url(#nocard)">
+
+<!-- cubinho +1 flutuando -->
+<g transform="translate(78,92)">
+  <polygon points="22,0 44,12 22,24 0,12" fill="#bcd5ff"/>
+  <polygon points="0,12 22,24 22,48 0,36" fill="#4d8dff"/>
+  <polygon points="22,24 44,12 44,36 22,48" fill="#2f62cc"/>
+  <text x="58" y="6" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="26" fill="#8fb8ff" filter="url(#neon)">+1</text>
+</g>
+<!-- corpo (moletom) -->
+<path d="M84,520 L84,420 Q84,344 168,334 L332,334 Q416,344 416,420 L416,520 Z" fill="url(#body)"/>
+<path d="M168,334 Q250,372 332,334" fill="none" stroke="#2a4a99" stroke-width="5"/>
+<!-- cordões -->
+<line x1="226" y1="346" x2="221" y2="398" stroke="#8fb8ff" stroke-width="5" stroke-linecap="round"/>
+<line x1="274" y1="346" x2="279" y2="398" stroke="#8fb8ff" stroke-width="5" stroke-linecap="round"/>
+<rect x="215" y="396" width="12" height="16" rx="4" fill="#bcd5ff"/>
+<rect x="273" y="396" width="12" height="16" rx="4" fill="#bcd5ff"/>
+<!-- emblema </> no peito -->
+<g fill="none" stroke="#6ea2ff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#neon)" transform="translate(-6,0)">
+  <polyline points="228,432 214,448 228,464"/><line x1="262" y1="426" x2="248" y2="470"/><polyline points="282,432 296,448 282,464"/>
+</g>
+
+<!-- capuz -->
+<rect x="126" y="92" width="248" height="262" rx="96" fill="url(#hood)"/>
+<rect x="146" y="114" width="208" height="222" rx="80" fill="#0a1532"/>
+<!-- cabeça de cubo -->
+<rect x="160" y="140" width="180" height="172" rx="38" fill="url(#head)"/>
+<rect x="176" y="148" width="120" height="9" rx="4.5" fill="#fff" opacity=".3"/>
+<!-- visor -->
+<rect x="176" y="184" width="148" height="80" rx="30" fill="url(#visor)"/>
+<rect x="190" y="190" width="70" height="5" rx="2.5" fill="#fff" opacity=".12"/>
+<g filter="url(#eyeGlow)" fill="#c9e4ff"><path d="M201,229 h34 a17,17 0 0 0 -34,0 z"/><path d="M255,229 h34 a17,17 0 0 0 -34,0 z"/></g>
+<!-- bochechas -->
+<rect x="172" y="272" width="22" height="9" rx="4.5" fill="#bcd5ff" opacity=".55"/>
+<rect x="306" y="272" width="22" height="9" rx="4.5" fill="#bcd5ff" opacity=".55"/>
+<path d="M228,282 q22,20 44,0 z" fill="#0b1733"/>
+<!-- fone -->
+<path d="M122,236 C118,58 382,58 378,236" fill="none" stroke="#21366e" stroke-width="18" stroke-linecap="round"/>
+<path d="M134,200 C140,86 360,86 366,200" fill="none" stroke="#6ea2ff" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+<rect x="100" y="196" width="46" height="88" rx="18" fill="#1b2c5c"/>
+<rect x="110" y="210" width="26" height="60" rx="11" fill="#4d8dff" filter="url(#neon)"/>
+<rect x="354" y="196" width="46" height="88" rx="18" fill="#1b2c5c"/>
+<rect x="364" y="210" width="26" height="60" rx="11" fill="#4d8dff" filter="url(#neon)"/>
+
+<!-- braço acenando -->
+<path d="M380,350 Q440,350 452,420 L452,520 L380,520 Z" fill="url(#body)"/>
+<g transform="rotate(4 432 390)">
+  <rect x="408" y="262" width="46" height="190" rx="21" fill="url(#body)"/>
+  <rect x="402" y="262" width="58" height="16" rx="8" fill="#2a4a99"/>
+  <rect x="402" y="200" width="58" height="60" rx="16" fill="url(#head)"/>
+  <rect x="410" y="207" width="32" height="6" rx="3" fill="#fff" opacity=".35"/>
+</g>
+<path d="M474,176 q12,10 10,28" fill="none" stroke="#8fb8ff" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+<path d="M458,168 q8,-4 16,-2" fill="none" stroke="#8fb8ff" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+
+</g></svg>
