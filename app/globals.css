@@ -245,6 +245,8 @@ body {
 }
 /* Nome com brilho passando */
 .shimmer-text {
+  display: inline-block;
+  padding-right: 0.15em;
   background: linear-gradient(110deg, #8fb8ff 30%, #ffffff 50%, #8fb8ff 70%);
   background-size: 250% 100%;
   -webkit-background-clip: text;
