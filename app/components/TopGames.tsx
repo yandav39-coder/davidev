@@ -2,12 +2,13 @@
 
 import { Eye, ExternalLink, Users } from "lucide-react";
 import { projects, gameUrl } from "../data/projects";
+import { profile } from "../data/profile";
 import type { LiveGames } from "../hooks/useLiveGames";
 import { formatNumber } from "./ProjectsCarousel";
 
 export default function TopGames({ live, visitsLabel, playingLabel }: { live: LiveGames; visitsLabel: string; playingLabel: string }) {
   const top = projects
-    .map((p) => ({ p, visits: live[p.placeId]?.visits || p.visits, playing: live[p.placeId]?.playing ?? 0 }))
+    .map((p) => ({ p, visits: live[p.placeId]?.visits || p.visits, playing: profile.showLiveCCU ? live[p.placeId]?.playing ?? 0 : 0 }))
     .sort((a, b) => b.visits - a.visits)
     .slice(0, 3);
 

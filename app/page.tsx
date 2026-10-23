@@ -228,6 +228,7 @@ export default function Page() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
+              {profile.showLiveCCU && (
               <div className="flex items-center gap-2 rounded-xl border border-[#4d8dff]/30 bg-[#4d8dff]/[0.08] px-4 py-2.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#4d8dff] animate-pulse shrink-0" />
                 <span className="text-xs text-white/50">
@@ -235,8 +236,9 @@ export default function Page() {
                   {" "}{t("liveCCU")}
                 </span>
               </div>
-              <div className="flex items-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.04] px-4 py-2.5">
-                <Eye size={13} strokeWidth={1.5} className="text-white/30 shrink-0" />
+              )}
+              <div className="flex items-center gap-2 rounded-xl border border-[#4d8dff]/30 bg-[#4d8dff]/[0.08] px-4 py-2.5">
+                <Eye size={13} strokeWidth={1.5} className="text-[#8fb8ff] shrink-0" />
                 <span className="text-xs text-white/60">
                   <span className="font-semibold text-white/70">{formatVisits(totalVisits)}+</span>
                   {" "}{t("totalVisits")}
@@ -278,7 +280,7 @@ export default function Page() {
                 {[
                   ...(profile.years ? [{ value: profile.years + "+", label: t("aboutYears") }] : []),
                   { value: profile.projectsCount + "+", label: t("aboutProjects") },
-                  { value: profile.studiosCount + "+", label: t("aboutStudios") },
+                  { value: formatVisits(totalVisits) + "+", label: t("aboutVisits") },
                 ].map(({ value, label }) => (
                   <div key={label} className="flex flex-col gap-1">
                     <span className="text-2xl font-bold text-white">{value}</span>
@@ -291,7 +293,7 @@ export default function Page() {
         </section>
 
         <section id="stats" className="relative px-6 pb-16">
-          <div ref={statsRef} className="reveal mx-auto max-w-5xl overflow-hidden rounded-2xl border border-white/[0.06] grid grid-cols-2 gap-px bg-white/[0.05] sm:grid-cols-4">
+          <div ref={statsRef} className={"reveal mx-auto max-w-5xl overflow-hidden rounded-2xl border border-white/[0.06] grid grid-cols-1 gap-px bg-white/[0.05] " + (profile.showLiveCCU ? "sm:grid-cols-4" : "sm:grid-cols-3")}>
             <StatCard raw={projects.length} label={t("statGames")} started={statsVisible} />
             {profile.years ? (
               <StatCard raw={profile.years} label={t("statYears")} started={statsVisible} />
@@ -299,7 +301,7 @@ export default function Page() {
               <StatCard raw={profile.projectsCount} label={t("aboutProjects")} started={statsVisible} />
             )}
             <StatCard key={"v" + totalVisits} raw={totalVisits} label={t("statVisits")} started={statsVisible} format={formatVisits} />
-            <StatCard key={"c" + liveCCU} raw={liveCCU} label={t("statCCU")} green started={statsVisible} format={formatVisits} />
+            {profile.showLiveCCU && <StatCard key={"c" + liveCCU} raw={liveCCU} label={t("statCCU")} green started={statsVisible} format={formatVisits} />}
           </div>
         </section>
 

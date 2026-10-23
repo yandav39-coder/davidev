@@ -2,6 +2,7 @@
 
 import { Eye, ExternalLink, Users } from "lucide-react";
 import { projects, gameUrl, type Project } from "../data/projects";
+import { profile } from "../data/profile";
 import type { LiveGames, LiveGame } from "../hooks/useLiveGames";
 
 export function formatNumber(n: number) {
@@ -13,7 +14,7 @@ export function formatNumber(n: number) {
 
 function GameCard({ project, live }: { project: Project; live?: LiveGame }) {
   const visits = live?.visits || project.visits;
-  const playing = live?.playing ?? 0;
+  const playing = profile.showLiveCCU ? live?.playing ?? 0 : 0;
   const img = live?.icon || project.thumbnail;
 
   return (

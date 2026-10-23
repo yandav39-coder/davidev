@@ -13,8 +13,8 @@ export const profile = {
   // Quantos projetos você já fez no total.
   projectsCount: 15,
 
-  // Estúdios/donos diferentes dos jogos da lista (cada jogo é de um grupo diferente).
-  studiosCount: 14,
+  // Mostrar jogadores ao vivo (CCU)? false = mostra só as visitas.
+  showLiveCCU: false,
 
   // Tecnologias (aparecem como etiquetas na seção "Sobre").
   skills: ["Luau", "Roblox Studio", "Gameplay Systems"],
