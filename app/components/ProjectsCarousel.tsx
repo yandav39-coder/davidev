@@ -1,0 +1,95 @@
+"use client";
+
+import { Eye, ExternalLink, Users } from "lucide-react";
+import { projects, gameUrl, type Project } from "../data/projects";
+import type { LiveGames, LiveGame } from "../hooks/useLiveGames";
+
+export function formatNumber(n: number) {
+  if (n >= 1_000_000_000) return `${(n / 1_000_000_000).toFixed(1)}B`;
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
+  return n.toString();
+}
+
+function GameCard({ project, live }: { project: Project; live?: LiveGame }) {
+  const visits = live?.visits || project.visits;
+  const playing = live?.playing ?? 0;
+  const img = live?.icon || project.thumbnail;
+
+  return (
+    <a
+      href={gameUrl(project)}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group relative flex w-48 shrink-0 flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03] transition-all duration-300 hover:border-[#4d8dff]/40 hover:bg-white/[0.06] hover:-translate-y-1"
+    >
+      <div className="relative aspect-square w-full overflow-hidden bg-white/[0.03]">
+        <span className="absolute inset-0 flex items-center justify-center text-5xl font-black italic text-white/[0.08]">
+          {project.name.replace(/[^A-Za-z]/g, "").charAt(0)}
+        </span>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={img}
+          alt={project.name}
+          loading="lazy"
+          onError={(e) => { e.currentTarget.style.display = "none"; }}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060b16]/90 via-[#060b16]/10 to-transparent" />
+        {playing > 0 && (
+          <div className="absolute top-2 right-2 flex items-center gap-1 rounded-lg bg-green-500/20 px-2 py-0.5 backdrop-blur-md border border-green-500/20">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400" />
+            <span className="text-[10px] font-semibold text-green-300">{formatNumber(playing)}</span>
+          </div>
+        )}
+        <div className="absolute bottom-2 right-2 rounded-lg bg-black/50 p-1.5 opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100">
+          <ExternalLink size={10} className="text-white/80" />
+        </div>
+      </div>
+      <div className="flex flex-col gap-1 px-3 py-2.5">
+        <h3 className="text-[11px] font-semibold text-white/90 leading-snug line-clamp-2 group-hover:text-white transition-colors">
+          {project.name}
+        </h3>
+        <div className="flex items-center gap-2">
+          {visits > 0 && (
+            <div className="flex items-center gap-1 text-white/30">
+              <Eye size={9} strokeWidth={1.5} />
+              <span className="text-[10px]">{formatNumber(visits)}</span>
+            </div>
+          )}
+          {playing > 0 && (
+            <div className="flex items-center gap-1 text-green-400/60">
+              <Users size={9} strokeWidth={1.5} />
+              <span className="text-[10px]">{formatNumber(playing)}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </a>
+  );
+}
+
+export default function ProjectsCarousel({ live }: { live: LiveGames }) {
+  const half = Math.ceil(projects.length / 2);
+  const row1 = projects.slice(0, half);
+  const row2 = projects.slice(half);
+
+  return (
+    <div className="carousel-wrapper flex flex-col gap-4 overflow-hidden">
+      <div className="flex overflow-hidden">
+        <div className="carousel-track flex gap-4 pr-4 animate-marquee-left" style={{ animationDuration: "45s" }}>
+          {[...row1, ...row1].map((p, i) => (
+            <GameCard key={`r1-${i}`} project={p} live={live[p.placeId]} />
+          ))}
+        </div>
+      </div>
+      <div className="flex overflow-hidden">
+        <div className="carousel-track flex gap-4 pr-4 animate-marquee-right" style={{ animationDuration: "38s" }}>
+          {[...row2, ...row2].map((p, i) => (
+            <GameCard key={`r2-${i}`} project={p} live={live[p.placeId]} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
